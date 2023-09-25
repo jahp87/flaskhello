@@ -21,7 +21,7 @@ RUN pip install /code/requirements.txt
 # 
 
 
-COPY ./flashello /code/flashello
+COPY ./ /code/flashello
 
 # 
 

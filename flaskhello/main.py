@@ -8,6 +8,7 @@ def holamundo():
 
 @app.route('/getinstance')
 def getinstance():
+    print('hello')
     return ['instance1', 'instance2', 'instance3' ]
 
 

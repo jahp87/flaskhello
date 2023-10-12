@@ -1,23 +1,17 @@
 pipeline {
     agent any
-    stages {
-        stage('Download repository') {
-           steps {
-                 sh('./scripts/start.sh')
-            }
-        }
-        stage('Develop Branch Deploy Code') {
-            when {
-                branch 'develop'
-            }
-            steps {
-                sh """
-                echo "Building Artifact from Develop branch"
-                """
-                sh """
-                echo "Deploying Code from Develop branch"
-                """
-           }
+    stage('Get source'){
+        git('https://github.com/jahp87/flaskhello.git')
+        if(!fileExists("Dockerfile")){
+            error('Dockerfile not found')
         }
     }
+    stage('Build Docker'){
+        sh("docker build -t flaskhello .") 
+    }
+    stage('Running image'){
+        sh('docker stop flaskhello || docker rm flaskhello || true ')
+        sh("docker run -d --name=flaskhello -p 80:5000 flaskhello")
+    }
+
 }

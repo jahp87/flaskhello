@@ -1,4 +1,5 @@
 node {
+    agent any
     stage('Get source'){
         git('https://github.com/jahp87/flaskhello.git')
         if(!fileExists("Dockerfile")){

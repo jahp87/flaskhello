@@ -3,10 +3,7 @@ pipeline {
     stages {
         stage('Download repository') {
            steps {
-                 git('https://github.com/jahp87/flaskhello.git')
-                 if(!fileExists("Dockerfile")){
-                    error('Dockerfile not found')
-                 }
+                 sh('./scripts/start.sh')
             }
         }
         stage('Develop Branch Deploy Code') {

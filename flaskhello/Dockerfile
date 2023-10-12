@@ -8,7 +8,8 @@ FROM alpine:latest
 
 WORKDIR /code
 
-RUN apk add python3 pip3
+RUN  apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN  apk add py3-pip
 
 # 
 

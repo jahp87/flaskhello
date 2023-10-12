@@ -2,17 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Master Branch Deploy Code') {
-            when {
-                branch 'main'
-            }
-            steps {
-                sh """
-                echo "Building Artifact from Master branch"
-                """
- 
-                sh """
-                echo "Deploying Code from Master branch"
-                """
+           steps {
+                 git('https://github.com/jahp87/flaskhello.git')
+                 if(!fileExists("Dockerfile")){
+                    error('Dockerfile not found')
+                 }
             }
         }
         stage('Develop Branch Deploy Code') {

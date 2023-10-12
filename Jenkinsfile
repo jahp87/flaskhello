@@ -1,16 +1,32 @@
-node {
+pipeline {
     agent any
-    stage('Get source'){
-        git('https://github.com/jahp87/flaskhello.git')
-        if(!fileExists("Dockerfile")){
-            error('Dockerfile not found')
+    stages {
+        stage('Master Branch Deploy Code') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh """
+                echo "Building Artifact from Master branch"
+                """
+ 
+                sh """
+                echo "Deploying Code from Master branch"
+                """
+            }
+        }
+        stage('Develop Branch Deploy Code') {
+            when {
+                branch 'develop'
+            }
+            steps {
+                sh """
+                echo "Building Artifact from Develop branch"
+                """
+                sh """
+                echo "Deploying Code from Develop branch"
+                """
+           }
         }
     }
-    stage('Build Docker'){
-        sh("docker build flaskhello") 
-    }
-    stage('Running image'){
-        sh("docker run -d --name=flaskhello -p 8080:8080 flaskhello")
-    }
-
 }

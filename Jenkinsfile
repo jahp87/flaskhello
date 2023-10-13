@@ -1,23 +1,14 @@
 pipeline {
     agent any
-     stages {
-        stage('Build') { 
-            steps { 
-                sh('make' ) 
-            }
+    stages{
+        stage('Build Docker'){
+        sh("docker build -t flaskhello/flaskhello .") 
         }
-        stage('Test'){
-            steps {
-                sh('make check') 
-            
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh('make publish') 
-            }
+        stage('Running image'){
+            sh('docker stop flaskhello | docker rm flaskhello | true ')
+            sh("docker run -d --name=flaskhello -p 8000:5000 flaskhello")
         }
     }
-}
     
 
+}

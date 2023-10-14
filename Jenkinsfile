@@ -1,14 +1,47 @@
 pipeline {
-    agent any
-    stages{
-        stage('Build Docker'){
-        sh("docker build -t flaskhello/flaskhello .") 
+    agent any    
+    stages {
+        
+        stage('Build Main') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh 'echo Building Docker Image...'
+                sh 'comando sh o llamada a un script sh'
+            }             
         }
-        stage('Running image'){
-            sh('docker stop flaskhello | docker rm flaskhello | true ')
-            sh("docker run -d --name=flaskhello -p 8000:5000 flaskhello")
+        stage('Build Dev')
+        {
+            when {
+                branch 'dev'
+            }
+            steps {
+                sh 'echo Building Docker Image...'
+                sh 'comando sh o llamada a un script sh'
+            }
         }
+        stage('Deploy Main') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Deploying.... '
+                echo 'Running Container...'
+                sh 'comando sh o llamada a un script sh'
+            }            
+        }
+        stage('Deploy Dev')
+        {
+            when {
+                branch 'dev'
+            }
+            steps {
+                echo 'Deploying.... '
+                echo 'Running Container...'
+                sh 'comando sh o llamada a un script sh'
+            }
+        }
+              
     }
-    
-
 }

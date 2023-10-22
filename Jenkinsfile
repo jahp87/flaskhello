@@ -8,7 +8,7 @@ pipeline {
             sh('docker stop flaskhello | docker rm flaskhello | true ')
             sh("docker run -d --name=flaskhello -p 8000:5000 flaskhello")
         }
-        }
+    }
    
 
 }

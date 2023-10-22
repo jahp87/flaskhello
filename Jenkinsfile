@@ -1,14 +1,20 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build Docker'){
-        sh "docker build -t flaskhello/flaskhello ." 
-        }
-        stage('Running image'){
-            sh "docker stop flaskhello | docker rm flaskhello | true "
-            sh "docker run -d --name=flaskhello -p 8000:5000 flaskhello" 
-        }
-    }
-   
-
+pipeline { 
+    agent any  
+    stages { 
+        stage('Build') { 
+            steps { 
+                echo "here .."
+            } 
+        } 
+        stage('Test') {  
+            steps { 
+                echo "here .."
+            } 
+        }uio 
+        stage('Deploy') {  
+            steps { 
+                echo "here .."
+            } 
+        } 
+    } 
 }

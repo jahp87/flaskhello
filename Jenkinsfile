@@ -8,7 +8,7 @@ pipeline {
             }
             steps {
                 sh 'echo Building Docker Image...'
-                sh 'comando sh o llamada a un script sh'
+                sh 'docker build -t flaskhello .'
             }             
         }
         stage('Build Dev')
@@ -18,7 +18,7 @@ pipeline {
             }
             steps {
                 sh 'echo Building Docker Image...'
-                sh 'comando sh o llamada a un script sh'
+                sh 'docker build -t flaskhello .'
             }
         }
         stage('Deploy Main') {
@@ -28,7 +28,8 @@ pipeline {
             steps {
                 echo 'Deploying.... '
                 echo 'Running Container...'
-                sh 'comando sh o llamada a un script sh'
+                sh "docker stop flaskhello | docker rm flaskhello | true "
+                sh "docker run -d --name=flaskhello -p 8000:5000 flaskhello" 
             }            
         }
         stage('Deploy Dev')
@@ -39,7 +40,8 @@ pipeline {
             steps {
                 echo 'Deploying.... '
                 echo 'Running Container...'
-                sh 'comando sh o llamada a un script sh'
+                sh "docker stop flaskhello | docker rm flaskhello | true "
+                sh "docker run -d --name=flaskhello -p 8000:5000 flaskhello" 
             }
         }
               

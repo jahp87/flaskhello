@@ -8,7 +8,7 @@ pipeline {
             }
             steps {
                 sh 'echo Building Docker Image...'
-                sh 'docker build -t flaskhello .'
+                sh 'docker build -t flaskhello/flaskhello .'
             }             
         }
         stage('Build Dev')
@@ -18,7 +18,7 @@ pipeline {
             }
             steps {
                 sh 'echo Building Docker Image...'
-                sh 'docker build -t flaskhello -f docker/Dockerfile .'
+                sh 'docker build -t flaskhello/flaskhello  .'
             }
         }
         stage('Deploy Main') {

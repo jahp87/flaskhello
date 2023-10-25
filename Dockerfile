@@ -14,7 +14,7 @@ RUN  apk add py3-pip
 # 
 
 
-COPY ./requirements.txt /code/requirements.txt
+COPY ./flaskhello/requirements.txt /code/requirements.txt
 
 # 
 
@@ -24,7 +24,7 @@ RUN pip install -r /code/requirements.txt
 # 
 
 
-COPY ./ /code/flaskhello
+COPY ./flaskhello /code/flaskhello
 
 # 
 

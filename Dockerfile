@@ -24,9 +24,9 @@ RUN pip install -r /code/requirements.txt
 # 
 
 
-COPY ./flaskhello /code/flaskhello
+COPY ./flaskhello /code
 
 # 
 
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

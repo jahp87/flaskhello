@@ -1,16 +1,11 @@
-from flask import Flask
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/')
-def holamundo():
-    return 'Hola Mundo!'
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
 
-@app.route('/getinstance')
-def getinstance():
-    print('hello')
-    return ['instance1', 'instance2', 'instance3' ]
-
-
-if __name__ == '__main__':
-    app.run()
+@app.get("/getinstance")
+async def list_instance():
+    return ['instance1', 'instance2', 'instance3']

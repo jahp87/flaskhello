@@ -29,7 +29,7 @@ pipeline {
                 echo 'Deploying.... '
                 echo 'Running Container...'
                 sh "docker stop flaskhello | docker rm flaskhello | true "
-                sh "docker run -d --name=flaskhello -p 5000:5000 flaskhello/flaskhello" 
+                sh "docker run -d --name=flaskhello -p 8000:8000 flaskhello/flaskhello" 
             }            
         }
         stage('Deploy Dev')
@@ -41,7 +41,7 @@ pipeline {
                 echo 'Deploying.... '
                 echo 'Running Container...'
                 sh "docker stop flaskhello | docker rm flaskhello | true "
-                sh "docker run -d --name=flaskhello -p 5000:5000 flaskhello/flaskhello" 
+                sh "docker run -d --name=flaskhello -p 8000:8000 flaskhello/flaskhello" 
             }
         }
               
